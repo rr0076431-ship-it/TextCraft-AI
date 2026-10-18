@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix TextCraft AI",
+  "description": "Free AI text \u0026 writing tools suite offering 10+ practical tools including Article Writer, Paraphraser, Summarizer, and deep reasoning with High Thinking mode.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
