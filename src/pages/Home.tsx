@@ -18,6 +18,9 @@ import { TOOLS } from '../lib/toolsConfig';
 import { ToolCard } from '../components/tools/ToolCard';
 import { useToast } from '../context/ToastContext';
 import { copyToClipboard } from '../utils/clipboard';
+import { AdsterraBanner } from '../components/ads/AdsterraBanner';
+
+const HERO_VIDEO_ID = 'Hgg7M3kSqyE';
 
 const DEMO_PREVIEWS = [
   {
@@ -101,24 +104,36 @@ export const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 bg-gradient-to-b from-blue-50/70 via-white to-[#F8FAFC]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative isolate overflow-hidden bg-slate-950 pt-12 pb-16 md:pt-20 md:pb-16">
+        {/* Muted YouTube video background: the playlist parameter is required for single-video looping. */}
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+          <iframe
+            title="Decorative looping hero background video"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
+            src={`https://www.youtube-nocookie.com/embed/${HERO_VIDEO_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${HERO_VIDEO_ID}&playsinline=1&rel=0&iv_load_policy=3`}
+            allow="autoplay; encrypted-media; picture-in-picture"
+            referrerPolicy="strict-origin-when-cross-origin"
+            tabIndex={-1}
+          />
+        </div>
+        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-slate-950/90 via-slate-950/75 to-indigo-950/65" aria-hidden="true" />
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column: Heading & CTAs */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100/70 border border-blue-200 text-xs font-semibold text-blue-800">
-                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-blue-100 backdrop-blur-sm">
+                <Sparkles className="w-3.5 h-3.5 text-blue-300" />
                 <span>Next-Gen Gemini 4 High Thinking &amp; Writing Suite</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] tracking-tight leading-[1.12]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
                 Write Smarter <br className="hidden sm:inline" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                   with Advanced AI
                 </span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-lg sm:text-xl text-slate-100 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 10 powerful AI writing, rewriting, and enhancement tools, completely free. No signup required for quick generations.
               </p>
 
@@ -140,7 +155,7 @@ export const Home: React.FC = () => {
               </div>
 
               {/* Trust highlights */}
-              <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-6 text-xs text-slate-500 font-medium">
+              <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-6 text-xs text-slate-200 font-medium">
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" /> No credit card needed
                 </span>
@@ -204,6 +219,17 @@ export const Home: React.FC = () => {
               </div>
             </div>
           </div>
+          <div className="mt-10 flex justify-center">
+            <div className="rounded-xl bg-slate-950/35 p-2 ring-1 ring-white/15 backdrop-blur-sm">
+              <p className="mb-2 text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-300">Advertisement</p>
+              <AdsterraBanner
+                adKey="df29f56582a733cb7843dfebdb035c7f"
+                width={160}
+                height={300}
+                title="Adsterra 160 by 300 banner"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -242,6 +268,8 @@ export const Home: React.FC = () => {
 
       {/* 3. TOOLS GRID SECTION */}
       <section id="tools-grid" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_160px] items-start gap-8">
+          <div className="min-w-0">
         <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] tracking-tight">
             All AI Writing Tools
@@ -273,6 +301,19 @@ export const Home: React.FC = () => {
           {filteredTools.map((tool) => (
             <ToolCard key={tool.slug} tool={tool} />
           ))}
+        </div>
+          </div>
+          <aside className="flex justify-center xl:sticky xl:top-24">
+            <div className="space-y-2">
+              <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Advertisement</p>
+              <AdsterraBanner
+                adKey="08c730bb1aad07713969bdaf0ab0f0a3"
+                width={160}
+                height={600}
+                title="Adsterra 160 by 600 skyscraper banner"
+              />
+            </div>
+          </aside>
         </div>
       </section>
 
